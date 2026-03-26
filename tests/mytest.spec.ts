@@ -25,3 +25,10 @@ test ("Verify the title of the page", async ({page}) => {
     // expect is like assert - it will validate during runtime but won't capture or print value
     await expect(page).toHaveTitle("The Internet");
 });
+
+test ("Verify the URL of the page", async ({page}) => {
+    await page.goto("https://the-internet.herokuapp.com/");
+
+    // below we are using regex to validate url, it means anything can be before or after internet in url but it should contain internet
+    await expect(page).toHaveURL(/internet/);
+});
