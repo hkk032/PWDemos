@@ -46,6 +46,13 @@ test ("Verify playwright locator", async ({page}) => {
     // 7 - page.getByTestId()
     // page.getByTestId() - identifies elements based on their data-testid attribute
     // when to use : when text or role based locators are unstable or not suitable
+    /*** If lets say data-testid that this locator uses in future gets changed then this locator will break
+     * so to tackle this, in playwright.config.ts we can add below configuration to ignore the data-testid attribute and then we can use other locators to identify the element
+     * 
+     * use: {
+     *   testIdAttribute: "data-test-id"   // data-tes-id is the new attribute that we will use in our application instead of data-testid
+     * }
+     ***/
     await expect(page.getByTestId("newsletter-email")).toBeVisible();
 
 });
