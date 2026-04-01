@@ -62,3 +62,64 @@ test("Xpath Locator", async ({page}) => {
     //button[text()='Start' or text()='Stop']
 
 });
+
+test ("Xpath axes", async ({page}) => {
+    await page.goto("https://www.w3schools.com/html/html_tables.asp");
+
+    // 1. self
+    // actually not needed to use, as we can directly identify the element without using self, but just for understanding purpose
+    const tdSelf:Locator = page.locator("//td[text()='Germany']/self::td");
+    console.log(await tdSelf.textContent());
+    await expect(tdSelf).toHaveText("Germany");
+
+    // 2. parent
+    const trParent:Locator = page.locator("//td[text()='Germany']/parent::tr");
+    console.log(await trParent.textContent());
+    await expect(trParent).toContainText("Maria");
+
+    // 3. child
+    const trChild:Locator = page.locator("//table[@id='customers']//tr[2]/child::td");
+    console.log(await trChild.allTextContents());
+    await expect(trChild).toHaveCount(3);
+
+    // 4. ancestor
+    const trAncestor:Locator = page.locator("//td[text()='Germany']/ancestor::table");
+    //td[text()='Germany']/ancestor::*  ->  * means it will return all the ancestor elements of td, which are tr, tbody, table, body, html
+    console.log(await trAncestor.textContent());
+    await expect(trAncestor).toHaveAttribute("id", "customers");
+
+    // 5. descendant
+    const trDescendant:Locator = page.locator("//table[@id='customers']/descendant::tr[3]");
+    //table[@id='customers']/descendant::*  ->  * means it will return all the descendant elements of table, which are tr, td, etc.
+    console.log(await trDescendant.textContent());
+    await expect(trDescendant).toContainText("Mexico");
+
+    /* following VS following-sibling
+    following will return all the elements that are present after the current element in the document, regardless of their level in the hierarchy
+    following-sibling will return only the sibling elements that are present after the current element in the same level of hierarchy
+    */
+
+    // 6. following
+    const tdFollowing:Locator = page.locator("//td[text()='Germany']/following::td");
+    //td[text()='Germany']/following::*  ->  * means it will return all the following elements of td, which are td, tr, etc.
+    console.log(await tdFollowing.allTextContents());
+
+    // 7. following-sibling
+    const tdFollowingSibling:Locator = page.locator("//td[text()='Maria Anders']/following-sibling::td");
+    console.log(await tdFollowingSibling.allTextContents());
+
+    /* preceding VS preceding-sibling
+    preceding will return all the elements that are present before the current element in the document, 1 level above
+    preceding-sibling will return only the sibling elements that are present before the current element in the same level of hierarchy
+    */
+
+    // 8. preceding (means parent and its siblings)
+    const tdPreceding:Locator = page.locator("//td[text()='Germany']/preceding::td");
+    //td[text()='Germany']/preceding::*  ->  * means it will return all the preceding elements of td, which are td, tr, etc.
+    //td[text()='Germany']/preceding::tbody -> its not returning anything because tbody is not preceding element of td, it is ancestor element of td, so it will return empty
+    console.log(await tdPreceding.allTextContents());
+
+    // 7. prceding-sibling (its siblings only that are present before the current element in the same level of hierarchy)
+    const tdPrecedingSibling:Locator = page.locator("//td[text()='Germany']/preceding-sibling::td");
+    console.log(await tdPrecedingSibling.allTextContents());
+});
