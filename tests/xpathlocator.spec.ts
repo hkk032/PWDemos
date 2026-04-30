@@ -17,7 +17,7 @@ test("Xpath Locator", async ({page}) => {
     //1 - contains()
     //In TS, even if it is returning a list of elements, we'll use page.locator and store in Locator variable, not array
     const products:Locator = page.locator("//h2//a[contains(@href, 'computer')]");
-    expect(products.count()).toBeGreaterThan(0);
+    await expect(await products.count()).toBeGreaterThan(0);
     //Single line action
     products.count().then(count => console.log("Total products are ", count));
     //Extract text value
@@ -32,7 +32,7 @@ test("Xpath Locator", async ({page}) => {
 
     //2 - starts-with()
     const productsWithBuild:Locator = page.locator("//h2//a[starts-with(@href, '/build')]");
-    expect(productsWithBuild.count()).toBeGreaterThan(0);
+    await expect(await productsWithBuild.count()).toBeGreaterThan(0);
 
     //3 - text()
     //This method will identify element based on the exact inline text, so we need to provide whole text - but it won't work if there is extra space or new line in the text, so we can use normalize-space() to ignore extra spaces and new lines
