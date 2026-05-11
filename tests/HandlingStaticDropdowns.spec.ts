@@ -1,5 +1,8 @@
 import {test, expect, Locator} from "@playwright/test";
 
+// Static Dropdown: Dropdown whose options are defined in the HTML and cannot be changed dynamically by user actions or JavaScript. 
+// The options are fixed and available when the page loads. We can use select tag to create static dropdown in HTML.
+
 test ("Handling Single Select Dropdown", async ({page}) => {
 
     await page.goto("https://testautomationpractice.blogspot.com/");
