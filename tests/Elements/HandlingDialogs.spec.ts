@@ -42,7 +42,7 @@ test ("Handling Confirmation Dialog", async ({page}) => {
 });
 
 
-test ("Handling Confirmation Dialog", async ({page}) => {
+test ("Handling Confirmation Dialog passing string", async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     // Enable dialog handler before opening the alert dialog
