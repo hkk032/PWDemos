@@ -1,0 +1,22 @@
+[
+    {
+        "email" : "validemail@gmail.com",
+        "password" : "validpassword",
+        "validity" : "valid"
+    },
+    {
+        "email" : "invalidemail@gmail.com",
+        "password" : "validpassword",
+        "validity" : "invalid"
+    },
+    {
+        "email" : "validemail@gmail.com",
+        "password" : "invalidpassword",
+        "validity" : "invalid"
+    },
+    {
+        "email" : "",
+        "password" : "",
+        "validity" : "invalid"
+    }
+]

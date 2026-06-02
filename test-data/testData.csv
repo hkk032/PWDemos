@@ -1,0 +1,5 @@
+email,password,validity
+validemail@gmail.com,validpassword,valid
+invalidemail@gmail.com,validpassword,invalid
+validemail@gmail.com,invalidpassword,invalid
+,,invalid
