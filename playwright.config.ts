@@ -25,6 +25,18 @@ export default defineConfig({
   // workers: 3,   // this we can specify for local execution as above is for pipeline
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  // reporter: 'list', // this will give the report in list format in console - can be used for CI/CD
+  // reporter: 'line',
+  // reporter: 'dot',
+  // reporter: 'junit',  // this will generate the report in xml format
+  // reporter: [['html', { open: 'never'/'always'/'on-failure', 'outputFolder':'html-report' }]],    // -> This will generate the report but will open it based on the condition specified
+  // multiple reporters can be used as shown below
+  // reporter: [
+  //   ['html', { open: 'never' }],
+  //   ['list'],
+  //   ['json', { outputFile: 'test-results.json' }],
+  //   ['junit', { outputFile: 'test-results.xml' }],
+  // ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     screenshot: 'only-on-failure',
